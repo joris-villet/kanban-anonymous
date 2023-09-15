@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(0,210,255);
+  background: linear-gradient(90deg, rgba(0,210,255,1) 0%, rgba(146,141,171,1) 100%);
+}
+
+.kanban {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  font-style: italic;
+  color: #525252;
+}
+
+.new-task {
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+  margin-bottom: 2rem;
+}
+
+.new-task input {
+  border: rgb(226, 226, 226) 1px solid;
+  padding: .5rem 0;
+  border-radius: 8px;
+}
+
+.new-task button {
+  border: grey 1px solid;
+  padding: .5rem 0;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgb(181, 233, 254);
+}
+
+.column {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  background: #ffffffda;
+  border-radius: 5px;
+  height: min-content;
+}
+
+.label {
+  background-color: #ffffff;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+  color: #383838;
+  padding: 1rem;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
