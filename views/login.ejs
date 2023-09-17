@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<body>
+  <div class="container__login">
+
+    <%- include('partials/form__email') %>
+    <%- include('partials/form__new__password') %>
+    <%- include('partials/form__password') %>
+    <!-- <form class="form">
+      <div class="container__email">
+        <label class="form__label" for="email">
+          <input class="form__input" id="email" type="text" placeholder="email">
+        </label>
+      </div>
+      <div class="container__password">
+        <label class="form__label" for="password">
+          <input class="form__input" id="password" type="text" placeholder="password">
+        </label>
+      </div>
+
+      <div>
+        <button class="form__button">se connecter</button>
+      </div>
+    </form> -->
+  </div>
+
+
+  <script>
+
+    const formEmail = document.querySelector('.form__email')
+    const formPassword = document.querySelector('.form__password')
+    const formNewPassword = document.querySelector('.form__new__password')
+    formPassword.style.display = 'none'
+    formNewPassword.style.display = 'none'
+
+    const formEmailButton = document.querySelector('.form__email .form__button')
+    const formNewPasswordButton = document.querySelector('.form__new__password .form__button')
+    const formPasswordButton = document.querySelector('.form__password .form__button')
+
+    formEmailButton.addEventListener('click', handleFormEmail)
+    formNewPasswordButton.addEventListener('click', handleFormNewPassword)
+
+    async function handleFormNewPassword(evt) {
+      evt.preventDefault()
+      
+      const payload = {
+        password: document.querySelector('.form__new__password #password').value,
+      }
+
+      if (!payload.password) return
+
+      if (!payload.password !== document.querySelector('#repeat__password').value) {
+        return console.log('password no equal')
+      }
+
+      const res = await superagent
+        .post("http://localhost:5000/login/password")
+        .send({ password: payload.password })
+
+      console.log("res from server => ", res.body);
+      
+    }
+
+    async function handleFormEmail(evt) {
+      evt.preventDefault()
+      
+      const payload = {
+        email: document.querySelector('#email').value,
+      }
+  
+      if (!payload.email) {
+        return console.log("email is empty")
+      }
+
+      const res = await superagent
+        .post("http://localhost:5000/login/email")
+        .send({ email: payload.email })
+        //.set("accept", "json");
+
+      console.log("res from server => ", res.body);
+
+      if (res.body.firstConnection) {
+        formEmail.style.display = 'none'
+        formNewPassword.style.display = 'block'
+      } else {
+        formEmail.style.display = 'none'
+        formPassword.style.display = 'block'
+      }
+    }
+
+
+    // formButton.addEventListener('click', async (evt) => {
+    //   evt.preventDefault()
+      
+    //   const payload = {
+    //     email: document.querySelector('#email').value,
+    //   }
+  
+    //   if (!payload.email) {
+    //     return console.log("email is empty")
+    //   }
+
+    //   const res = await superagent
+    //     .post("http://localhost:5000/login:email")
+    //     .send({ email: payload.email })
+    //     //.set("accept", "json");
+
+    //   console.log("res from server => ", res.body);
+
+    //   if (res.body.firstConnection) {
+    //     containerNewPassword.style.display = 'block'
+    //     containerRepeatPassword.style.display = 'block'
+    //   } else {
+    //     containerPassword.style.display = 'block'
+    //   }
+      
+    //   if (payload.newPassword !== containerRepeatPassword.value) {
+    //     return console.log("passwords no equal")
+    //   }
+      
+    //   payload['newPassword'] = containerNewPassword.value
+
+    // })
+
+
+
+
+
+    /* -------------------------------- */
+
+    // async function handleLogin(event) {
+    //   event.preventDefault()
+    //   const payload = {
+    //     firstname: document.querySelector('#firstname'),
+    //     lastname: document.querySelector('#lastname')
+    //   }
+    //   if (!payload.firstname.value || !payload.lastname.value) {
+    //     console.log("firstname and lastname are empty")
+    //   }
+    // }
+  </script>
+</body>
+</html>

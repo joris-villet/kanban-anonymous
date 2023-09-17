@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanban anonymous</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
+  <%- include('partials/head') %>
 </head>
 <body>
+    <h1 class="title-main">TAI Retro</h1>
     <div class="kanban">
 
       <div class="column">
@@ -16,9 +13,9 @@
           <input type="text" id="newLabel" placeholder="Nom de la tâche" autocomplete="off">
           <button onclick="createNewLabel()">Créer</button>
         </div>
-        <div id="todo">
-            <div class="label">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam, ipsam!</div>
-            <div class="label">Task 2</div>
+        <div id="todo" ondrop="handleDrop(event)">
+            <div class="todo label">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam, ipsam!</div>
+            <div class="todo label">Task 2</div>
         </div>
       </div>
 
